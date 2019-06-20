@@ -32,7 +32,13 @@ dependencies{
 
 def jarPackage(buildType) {
     return tasks.create("jar${buildType.capitalize()}Package", Copy) {
-        def aarFile = file(project.buildDir.path + "/outputs/aar/${project.name}-${buildType}.aar")
+        def aarFile = null
+//        try {
+//            aarFile = file(project.buildDir.path + "/outputs/aar/${project.name}-${buildType}.aar")
+//        } catch (e) {
+            aarFile = file(project.buildDir.path + "/outputs/aar/${project.name}.aar")
+//        }
+
         def outputDir = file(project.buildDir.path + "/outputs/jar")
 
         from zipTree(aarFile)
